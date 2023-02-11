@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\application",
+    "\\application\\conf",
+    "\\application\\helpers",
+    "\\application\\helpers\\debug",
+    "\\application\\helpers\\error",
+    "\\application\\middleware",
+    "\\application\\models",
+    "\\application\\public",
+    "\\application\\public\\.idea"
+  ],
+  "SelectedNode": "\\application\\app.js",
+  "PreviewInSolutionExplorer": false
+}
