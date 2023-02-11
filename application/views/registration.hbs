@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Registration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/registration.js"></script>
+</head>
+<body>
+    <div class="logo">
+        <div align="right">By Alexander Bjeldanes</div>
+        <div><h1>CSC317 Photos</h1></div>
+    </div>
+
+    <div class="topnav">
+        <a class="active" href="/" style="float:left">Home</a>
+        <a href="/postimage" style="float:right">Post</a>
+        <a href="/login" style="float:right">Login</a>
+    </div>
+
+    <div class="reg">
+        <h2>Create your Account</h2>
+        <form action="/users/register" name="create" id="form" method="POST" enctype="application/x-www-form-urlendcoded">
+            <section>
+                <label for="usrname">Username</label>
+                <div>
+                    <input type="text" class="textbook" name="usrname" placeholder="Ex: John Doe" pattern="[a-zA-Z][a-zA-Z0-9]{3,25}" required>
+                </div>
+                <br>
+                <label>Username must:  </label>
+                <br>
+                <label>begin with a character ([a-zA-Z])</label>
+                <br>
+                <label>have 3 or more alphabetic characters</label>
+                <br>
+            </section>
+
+            <section>
+                <label for="email">Email</label>
+                <input type="text"  name="email" placeholder="Ex: johnd@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <br>
+            </section>
+
+            <section>
+                <label for="passw">Password</label>
+                <input type="password"  name="passw" placeholder="Password" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <br>
+                <label>Password must contain:  </label>
+                <br>
+                <label>8 or more characters</label>
+                <br>
+                <label>atleast 1 uppercase </label>
+                <br>
+                <label>atleast 1 special character </label>
+                <br>
+                <label for="confpw">Re-Enter Password</label>
+                <input type="password" name="confpw" class="textbox" placeholder="Confirm" onkeyup='matching();' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <span id='message' class="text-center"></span>
+                <br>
+            </section>
+
+            <section>
+                <input type="checkbox" name="age" required>
+                <label for="age">I am 13 years of age or older</label>
+                <br>
+            </section>
+
+            <section>
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the </label>
+                <a href="/">
+                    <label for="link">Terms of Service/Privacy Rules</label>
+                </a>
+            </section>
+
+            <br>
+            <br>
+            <section class="text-center">
+                <input type="submit" onclick="submitForm(event)" value="Register">
+            </section>
+
+        </form>
+    </div>
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if (ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/'); 
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+
+
+
+</body>
+</html>

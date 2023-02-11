@@ -1,0 +1,18 @@
+<div class="topnav">
+        
+        <a class="active" href="/" style="float:left">Home</a>
+
+
+        
+
+
+        {{#if logged}}
+        <a id="logout-button" style="float:right">Log Out</a>
+        {{else}}
+        <a href="/login" id="login-button" style="float:right">Login </a>
+        {{/if}}
+
+        <a href="/postimage" style="float:right">Post</a>
+
+        <input id="search-text" name="" type="text" />
+</div>

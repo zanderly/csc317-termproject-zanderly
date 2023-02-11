@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Page</title>
+
+</head>
+<body>
+    <div class="logo">
+        <div align="right">By Alexander Bjeldanes</div>
+        <div><h1>CSC317 Photos</h1></div>
+        <include src="../partials/nav.hbs"></include>
+    </div>
+    <div class="topnav">
+        {{> nav}}
+
+        
+    </div>
+
+    <div class="login">
+        <h2>Login</h2>
+        <form action="/users/login" method="POST" enctype="application/x-www-form-urlencoded">
+            <label for="usrname">Username</label>
+            <input type="text" name="usrname" required />
+            <br>
+            <label for="passw">Password</label>
+            <input type="password" name="passw" required/>
+            <p>
+                <a href="/registration" style="color: #3eb142">Create your account</a>
+            </p>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if (ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/'); 
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+</body>
+</html>

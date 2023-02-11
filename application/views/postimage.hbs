@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>MakePost</title>
+</head>
+<body>
+    <div class="logo">
+        <div align="right">By Alexander Bjeldanes</div>
+        <div><h1>CSC317 Photos</h1></div>
+
+    </div>
+    <div class="topnav">
+        {{> nav}}
+
+        
+    </div>
+    <div class="postimage">
+        <h1>Create a Post</h1>
+        <form action="/posts/createPost" method="POST" enctype="application/x-www-form-urlencoded">
+            <section>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Ex: My Vacation" required />
+                <br>
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="uploadImage"  required />
+            </section>
+
+            <br>
+            <br>
+
+            <section>
+                <label for="desc">Description:</label>
+                <br>
+                <input name="description" rows="6" cols="40" name="desc" placeholder="Ex: On my vacation..." required /></textarea>
+                <br>
+            </section>
+
+            <section>
+                <input type="checkbox" id="termcond" name="termcond" required/>
+                <label for="termcond">Upload image</label>
+                <a href="/">
+                    <label for="link">Terms and Conditions</label>
+                </a>
+                <br>
+                <br>
+            </section>
+
+            <section class="text-center">
+                <input type="submit">
+            </section>
+
+        </form>
+    </div>
+
+    {{#if logged}}
+        <script>
+            let ele = document.getElementById('logout-button');
+            if (ele) {
+                ele.onclick = (even) => {
+                    fetch('/users/logout', {
+                        method: "POST"
+                    })
+                    .then((data) => {
+                        location.replace('/'); 
+                    })
+                }
+            }
+        </script>
+    {{/if}}
+
+</body>
+</html>
